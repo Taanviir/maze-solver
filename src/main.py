@@ -1,5 +1,4 @@
 from graphics import Window
-from Cell import Cell
 from Maze import Maze
 
 
@@ -14,6 +13,11 @@ def main():
     win = Window(screen_x + 200, screen_y + 200)
 
     maze = Maze(margin, margin, num_rows, num_cols, cell_size_x, cell_size_y, win)
+    print("maze created...")
+    if maze.solve():
+        print("maze has been solved!")
+    else:
+        print("maze cannot be solved!")
 
     win.wait_for_close()
 
