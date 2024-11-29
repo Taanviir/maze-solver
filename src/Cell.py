@@ -13,7 +13,7 @@ class Cell:
         self.__y2 = None
         self.__win = window
 
-    def draw(self, x1: int, y1: int, x2: int, y2: int, fill_color: str = "black"):
+    def draw(self, x1: int, y1: int, x2: int, y2: int) -> None:
         if self.__win is None:
             return
 
@@ -22,15 +22,15 @@ class Cell:
         self.__x2 = x2
         self.__y2 = y2
         if self.has_left_wall:
-            self.__win.draw_line(Line(Point(x1, y1), Point(x1, y2)), fill_color)
+            self.__win.draw_line(Line(Point(x1, y1), Point(x1, y2)))
         if self.has_right_wall:
-            self.__win.draw_line(Line(Point(x2, y1), Point(x2, y2)), fill_color)
+            self.__win.draw_line(Line(Point(x2, y1), Point(x2, y2)))
         if self.has_top_wall:
-            self.__win.draw_line(Line(Point(x1, y1), Point(x2, y1)), fill_color)
+            self.__win.draw_line(Line(Point(x1, y1), Point(x2, y1)))
         if self.has_bottom_wall:
-            self.__win.draw_line(Line(Point(x1, y2), Point(x2, y2)), fill_color)
+            self.__win.draw_line(Line(Point(x1, y2), Point(x2, y2)))
 
-    def draw_move(self, to_cell, undo=False):
+    def draw_move(self, to_cell, undo=False) -> None:
         def get_cell_center(cell: Cell) -> Point:
             x = (cell.__x1 + cell.__x2) / 2
             y = (cell.__y1 + cell.__y2) / 2
