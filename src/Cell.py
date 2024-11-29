@@ -14,6 +14,9 @@ class Cell:
         self.__win = window
 
     def draw(self, x1: int, y1: int, x2: int, y2: int, fill_color: str = "black"):
+        if self.__win is None:
+            return
+
         self.__x1 = x1
         self.__y1 = y1
         self.__x2 = x2
@@ -34,9 +37,9 @@ class Cell:
             return Point(x, y)
 
         if undo:
-            fill_color = "red"
-        else:
             fill_color = "gray"
+        else:
+            fill_color = "red"
 
         line = Line(get_cell_center(self), get_cell_center(to_cell))
         self.__win.draw_line(line, fill_color)
