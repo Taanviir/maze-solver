@@ -26,3 +26,17 @@ class Cell:
             self.__win.draw_line(Line(Point(x1, y1), Point(x2, y1)), fill_color)
         if self.has_bottom_wall:
             self.__win.draw_line(Line(Point(x1, y2), Point(x2, y2)), fill_color)
+
+    def draw_move(self, to_cell, undo=False):
+        def get_cell_center(cell: Cell) -> Point:
+            x = (cell.__x1 + cell.__x2) / 2
+            y = (cell.__y1 + cell.__y2) / 2
+            return Point(x, y)
+
+        if undo:
+            fill_color = "red"
+        else:
+            fill_color = "gray"
+
+        line = Line(get_cell_center(self), get_cell_center(to_cell))
+        self.__win.draw_line(line, fill_color)
